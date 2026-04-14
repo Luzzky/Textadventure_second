@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="GUI" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="GUI" />
+    <module name="GUI" />
+    <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-21.0.9/lib --add-modules javafx.controls,javafx.fxml" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
