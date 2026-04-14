@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class RoomAdministration {
@@ -21,6 +22,7 @@ public class RoomAdministration {
     private Random rand = new Random();
     private String currentRoomFXML;
     private String lastRoomFXML;
+    private int roomNumber = 1;
 
 
     public RoomAdministration() {
@@ -44,6 +46,22 @@ public class RoomAdministration {
     }
     public String getLastRoomFXML() {
         return lastRoomFXML;
+    }
+
+    public void randomDifferentNextRoom(Scene scene, Player player, RoomAdministration administration) {
+        Room room;
+        int status = 0;
+
+        do {
+            room = getRandomRoom();
+            if (!Objects.equals(room.roomFXML(), currentRoomFXML)) {
+                status++;
+                switchToRoom(room.roomFXML(), scene, player, administration);
+            }
+        }
+        while(status == 0);
+
+        roomNumber++;
     }
 
 
@@ -76,31 +94,10 @@ public class RoomAdministration {
 
 
     public void switchToFailScreen(Scene scene, Player player, RoomAdministration administration) {
+        switchToRoom("/Rooms/FailScreen.fxml", scene, player, administration);
+    }
 
-        String fxmlPath = "/Rooms/FailScreen.fxml";
-
-        try {
-            URL resource = getClass().getResource(fxmlPath);
-            if (resource == null) {
-                throw new IllegalStateException("FXML nicht gefunden: " + fxmlPath);
-            }
-
-            FXMLLoader loader = new FXMLLoader(resource);
-            Parent roomView = loader.load();
-
-            Object roomController = loader.getController();
-            if (roomController instanceof PlayerAwareController playerAwareController) {
-                playerAwareController.setPlayer(player, administration);
-            }
-
-            Stage stage = (Stage) scene.getWindow();
-            stage.getScene().setRoot(roomView);
-
-            lastRoomFXML = currentRoomFXML;
-            currentRoomFXML = fxmlPath;
-
-        } catch (IOException e) {
-            throw new RuntimeException("Fehler beim Laden von " + fxmlPath, e);
-        }
+    public int getRoomNumber(){
+        return roomNumber;
     }
 }

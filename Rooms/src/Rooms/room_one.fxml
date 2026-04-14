@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Rooms.RoomOneController">
+<BorderPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Rooms.RoomOneController">
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="334.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -15,16 +15,18 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="18.0" prefWidth="45.0" text="Raum 1" />
-            <Button mnemonicParsing="false" onAction="#attack" text="Use Punch" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="skip turn" onAction="#skipTurn" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#test" text="test" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="roomNumber" prefHeight="18.0" prefWidth="45.0" text="Raum 1" />
+            <Button fx:id="attackOne" mnemonicParsing="false" onAction="#attack" text="Use Punch" GridPane.rowIndex="2" />
+            <Button fx:id="attackTow" mnemonicParsing="false" onAction="#skipTurn" text="skip turn" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="attackThree" mnemonicParsing="false" onAction="#test" text="test" GridPane.rowIndex="3" />
+            <Button fx:id="inventory" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="healthLabel" text="player health" GridPane.rowIndex="1" />
             <Label fx:id="enemieHelthLable" text="gegner leben" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Zombie" GridPane.columnIndex="1" />
+            <Label fx:id="enemieName" text="Zombie" GridPane.columnIndex="1" />
+            <Button fx:id="nextRoomButton" mnemonicParsing="false" text="next Room" onAction="#nextRoom" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </center>

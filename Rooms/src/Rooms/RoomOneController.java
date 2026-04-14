@@ -7,22 +7,39 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import Enemies.*;
+import javafx.scene.layout.BorderPane;
 
 public class RoomOneController implements PlayerAwareController {
 
     public Label enemieHelthLable;
     public Label statusLable;
+    public Label enemieName;
+    public BorderPane pane;
+    public Button nextRoomButton;
+    public Button inventory;
+    public Button attackThree;
+    public Button attackTow;
+    public Button attackOne;
+    public Label roomNumber;
     @FXML
     private Label healthLabel;
     private Player player;
-    private Enemie enemie = new Zombie();
+    private Enemie enemie;
     private RoomAdministration administration;
+    private EnemieAdministration enadministration;
 
 
     @Override
     public void setPlayer(Player player, RoomAdministration administration) {
         this.player = player;
         this.administration = administration;
+        nextRoomButton.setDisable(true);
+        nextRoomButton.setVisible(false);
+        roomNumber.setText("Room: " + administration.getRoomNumber());
+        enadministration = new EnemieAdministration();
+        enemie = enadministration.getRandomEnemie();
+        enemieName.setText("Enemie: " + enemie.getName());
+
         updateHealthLabel();
         updateEnemieHelthLable();
     }
@@ -61,16 +78,29 @@ public class RoomOneController implements PlayerAwareController {
             enemieHelthLable.setText("kein enemie gesetzt");
             return;
         }
+
         enemieHelthLable.setText("Enemie Helth: " + enemie.getHealth());
+
+        if(enemie.getHealth() <= 0) {
+            nextRoomButton.setVisible(true);
+            nextRoomButton.setDisable(false);
+            attackOne.setVisible(false);
+            attackThree.setVisible(false);
+            attackTow.setVisible(false);
+            inventory.setVisible(false);
+            statusLable.setText("You defeated " + enemie.getName() + "\nyou can now continue your journey");
+        }
 
     }
 
     public void attack(ActionEvent actionEvent) {
         String text = player.attack(enemie);
         updateEnemieHelthLable();
-        text = text + "\nOpponent turn: " + enemieNextMove();
-        updateHealthLabel();
-        statusLable.setText(text); // erste trunde kein damage
+        if(enemie.getHealth() > 0) {
+            text = text + "\nOpponent turn: " + enemieNextMove();
+            updateHealthLabel();
+            statusLable.setText(text);
+        }
     }
 
     public String enemieNextMove(){
@@ -87,4 +117,8 @@ public class RoomOneController implements PlayerAwareController {
         updateHealthLabel();
     }
 
+    public void nextRoom(ActionEvent actionEvent) {
+        Scene scene = pane.getScene();
+        administration.randomDifferentNextRoom(scene, player, administration);
+    }
 }

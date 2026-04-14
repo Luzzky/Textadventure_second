@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Pos?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Rooms.RoomTowController">
    <center>
       <VBox alignment="CENTER" spacing="12.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Raum 2" />
-            <Button mnemonicParsing="false" text="raum 2" />
+            <Label text="⛲">
+               <font>
+                  <Font size="76.0" />
+               </font></Label>
+            <Label text="You found a Fountain!" />
+            <Button fx:id="nextRoom" mnemonicParsing="false" onAction="#nextRoom" text="nächster raum" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="pass" mnemonicParsing="false" onAction="#pass" prefHeight="26.0" prefWidth="311.0" text="Don`t drink" />
+                  <Button fx:id="drink" mnemonicParsing="false" onAction="#drink" prefHeight="26.0" prefWidth="291.0" text="Drink" />
+               </children>
+            </HBox>
+            <Label fx:id="statusLable" alignment="CENTER" prefHeight="52.0" prefWidth="517.0" text="Was wird Wohl passieren?" textAlignment="CENTER" />
          </children>
       </VBox>
    </center>
+   <top>
+      <Label fx:id="playerLife" text="Label" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>

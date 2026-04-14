@@ -24,6 +24,7 @@ public class FailScreenController implements PlayerAwareController{
     }
 
     public void restartRoom(ActionEvent actionEvent) {
+        player.setHelth(100);
         roomAdministration.switchToRoom(roomAdministration.getLastRoomFXML(), statusLable.getScene(), player, roomAdministration);
     }
 
