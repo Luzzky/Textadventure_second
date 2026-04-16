@@ -1,11 +1,17 @@
 package Rooms;
 
+import Game.Game_loop;
 import Game.Player;
+import Game.Player_one;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class FailScreenController implements PlayerAwareController{
     public Label statusLable;
+    public Button restartRoomButton;
     private RoomAdministration roomAdministration;
     private Player player;
 
@@ -15,6 +21,7 @@ public class FailScreenController implements PlayerAwareController{
         statusLable.setText("You`ve just lost the fight");
         roomAdministration = administration;
         this.player = player;
+        restartRoomButton.setDisable(true);
 
     }
 
@@ -23,6 +30,7 @@ public class FailScreenController implements PlayerAwareController{
         return "/Rooms/FailScreen.fxml";
     }
 
+    //richtige leben nach restart fixen dann disable aufheben
     public void restartRoom(ActionEvent actionEvent) {
         player.setHelth(100);
         roomAdministration.switchToRoom(roomAdministration.getLastRoomFXML(), statusLable.getScene(), player, roomAdministration);
@@ -30,5 +38,13 @@ public class FailScreenController implements PlayerAwareController{
 
     public void exitGame(ActionEvent actionEvent) {
         System.exit(0);
+    }
+
+    public void restartGame(ActionEvent actionEvent) {
+        Player player = new Player_one();
+        Game_loop game = new Game_loop(player, roomAdministration);
+        game.start();
+        Scene scene = ((Node) actionEvent.getSource()).getScene();
+        roomAdministration.restartGame("/Rooms/startscreen.fxml", scene, player, roomAdministration);
     }
 }

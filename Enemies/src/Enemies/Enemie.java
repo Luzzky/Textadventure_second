@@ -8,4 +8,5 @@ public interface Enemie {
     String takeDamage(int damage);
     int calculateDamage(int critStatus);
     String getName();
+    int getMaxHealth();
 }

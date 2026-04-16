@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -18,15 +19,45 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="roomNumber" prefHeight="18.0" prefWidth="45.0" text="Raum 1" />
-            <Button fx:id="attackOne" mnemonicParsing="false" onAction="#attack" text="Use Punch" GridPane.rowIndex="2" />
-            <Button fx:id="attackTow" mnemonicParsing="false" onAction="#skipTurn" text="skip turn" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="attackThree" mnemonicParsing="false" onAction="#test" text="test" GridPane.rowIndex="3" />
-            <Button fx:id="inventory" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="healthLabel" text="player health" GridPane.rowIndex="1" />
-            <Label fx:id="enemieHelthLable" text="gegner leben" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="enemieName" text="Zombie" GridPane.columnIndex="1" />
-            <Button fx:id="nextRoomButton" mnemonicParsing="false" text="next Room" onAction="#nextRoom" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="attackOne" mnemonicParsing="false" onAction="#attack" prefHeight="23.0" prefWidth="200.0" text="Use Punch" translateX="5.0" GridPane.rowIndex="2" />
+            <Button fx:id="attackTow" mnemonicParsing="false" onAction="#attackTwo" prefHeight="23.0" prefWidth="200.0" text="attack 2" translateX="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="attackThree" mnemonicParsing="false" onAction="#test" prefHeight="23.0" prefWidth="200.0" text="test" translateX="5.0" GridPane.rowIndex="3" />
+            <Button fx:id="inventory" mnemonicParsing="false" prefHeight="23.0" prefWidth="200.0" text="Button" translateX="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="enemieName" text="Zombie" GridPane.columnIndex="1">
+               <padding>
+                  <Insets left="5.0" />
+               </padding></Label>
+            <Button fx:id="nextRoomButton" mnemonicParsing="false" onAction="#nextRoom" text="next Room" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="healthLabel" text="player health">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding></Label>
+                  <ProgressBar fx:id="playerHealthBar" prefWidth="200.0" progress="0.0">
+                     <padding>
+                        <Insets left="5.0" top="4.0" />
+                     </padding></ProgressBar>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="enemieHelthLable" text="gegner leben">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding></Label>
+                  <ProgressBar fx:id="enimeHealthBar" prefWidth="200.0" progress="0.0">
+                     <padding>
+                        <Insets left="5.0" top="4.0" />
+                     </padding></ProgressBar>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="roomNumber" text="Label" translateX="5.0" translateY="25.0" />
+                  <Label fx:id="highscore" text="Label" translateX="5.0" translateY="25.0" />
+               </children>
+            </VBox>
          </children>
       </GridPane>
    </center>

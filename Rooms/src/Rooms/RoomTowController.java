@@ -14,6 +14,8 @@ public class RoomTowController implements PlayerAwareController{
     public Button pass;
     public Button drink;
     public Label playerLife;
+    public Label roomNumber;
+    public Label highscore;
     private Player player;
     private RoomAdministration administration;
 
@@ -23,6 +25,8 @@ public class RoomTowController implements PlayerAwareController{
         this.administration = administration;
         updtePlayerLife();
         nextRoom.setVisible(false);
+        roomNumber.setText("Room: " + administration.getRoomNumber());
+        highscore.setText("Highscore: " + administration.getHighscore());
 
     }
 
@@ -32,7 +36,7 @@ public class RoomTowController implements PlayerAwareController{
     }
 
     private void updtePlayerLife() {
-        playerLife.setText("Spieler 1 Leben: " + player.getHealth());
+        playerLife.setText("Spieler 1 Leben: " + player.getHealth() + " / " + player.getMaxHealth());
     }
 
     public void nextRoom(ActionEvent actionEvent) {

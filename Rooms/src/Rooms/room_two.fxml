@@ -12,12 +12,12 @@
                <font>
                   <Font size="76.0" />
                </font></Label>
-            <Label text="You found a Fountain!" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="440.0" text="Du findest einen Brunnen mit scheinbar kristall klaren wasser." />
             <Button fx:id="nextRoom" mnemonicParsing="false" onAction="#nextRoom" text="nächster raum" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="pass" mnemonicParsing="false" onAction="#pass" prefHeight="26.0" prefWidth="311.0" text="Don`t drink" />
-                  <Button fx:id="drink" mnemonicParsing="false" onAction="#drink" prefHeight="26.0" prefWidth="291.0" text="Drink" />
+                  <Button fx:id="pass" mnemonicParsing="false" onAction="#pass" prefHeight="26.0" prefWidth="299.0" text="Don`t drink" translateX="5.0" />
+                  <Button fx:id="drink" mnemonicParsing="false" onAction="#drink" prefHeight="26.0" prefWidth="285.0" text="Drink" translateX="10.0" />
                </children>
             </HBox>
             <Label fx:id="statusLable" alignment="CENTER" prefHeight="52.0" prefWidth="517.0" text="Was wird Wohl passieren?" textAlignment="CENTER" />
@@ -25,6 +25,16 @@
       </VBox>
    </center>
    <top>
-      <Label fx:id="playerLife" text="Label" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="43.0" prefWidth="302.0">
+               <children>
+                  <Label fx:id="roomNumber" prefHeight="18.0" prefWidth="300.0" text="Label" />
+                  <Label fx:id="highscore" prefHeight="18.0" prefWidth="297.0" text="Label" />
+               </children>
+            </VBox>
+            <Label fx:id="playerLife" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="287.0" text="Label" translateY="5.0" />
+         </children>
+      </HBox>
    </top>
 </BorderPane>

@@ -3,10 +3,14 @@ package Game;
 import Enemies.Enemie;
 
 public interface Player {
-    public int getHealth();
-    public String tageDamage(int health);
-    public String attack(Enemie enemie);
-    public void setHelth(int heal);
-    public int calculateDamage(int critStatus);
-    public int getMaxHealth();
+    int getHealth();
+    String tageDamage(int health);
+    String attackOne(Enemie enemie);
+    String attackTwo(Enemie enemie);
+    String attackThree(Enemie enemie);
+    String applyStatus(String[] awnsers);
+    void setHelth(int heal);
+    int getMaxHealth();
+    int getDefend();
+    void resetTurnStatus();
 }

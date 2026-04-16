@@ -4,12 +4,14 @@ import Game.Player;
 
 public class Zombie implements Enemie {
     private int health;
+    private int maxHealth;
     private int damage;
     private int critChance;
     private String name ="Zombie";
 
     public Zombie() {
         this.health = 100;
+        this.maxHealth = health;
         this.damage = 10;
         this.critChance = 10;
     }
@@ -47,5 +49,10 @@ public class Zombie implements Enemie {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int getMaxHealth() {
+        return maxHealth;
     }
 }

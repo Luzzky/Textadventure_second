@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import Enemies.*;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
 
 public class RoomOneController implements PlayerAwareController {
@@ -21,6 +22,9 @@ public class RoomOneController implements PlayerAwareController {
     public Button attackTow;
     public Button attackOne;
     public Label roomNumber;
+    public ProgressBar playerHealthBar;
+    public ProgressBar enimeHealthBar;
+    public Label highscore;
     @FXML
     private Label healthLabel;
     private Player player;
@@ -39,6 +43,7 @@ public class RoomOneController implements PlayerAwareController {
         enadministration = new EnemieAdministration();
         enemie = enadministration.getRandomEnemie();
         enemieName.setText("Enemie: " + enemie.getName());
+        highscore.setText("Highscore: " + administration.getHighscore());
 
         updateHealthLabel();
         updateEnemieHelthLable();
@@ -64,6 +69,7 @@ public class RoomOneController implements PlayerAwareController {
         }
 
         healthLabel.setText("Player Health: " + player.getHealth());
+        playerHealthBar.setProgress((double) player.getHealth() /player.getMaxHealth());
 
         if(player.getHealth() <= 0) {
             roomfailed(healthLabel.getScene());
@@ -80,6 +86,7 @@ public class RoomOneController implements PlayerAwareController {
         }
 
         enemieHelthLable.setText("Enemie Helth: " + enemie.getHealth());
+        enimeHealthBar.setProgress((double) enemie.getHealth() /enemie.getMaxHealth());
 
         if(enemie.getHealth() <= 0) {
             nextRoomButton.setVisible(true);
@@ -94,7 +101,7 @@ public class RoomOneController implements PlayerAwareController {
     }
 
     public void attack(ActionEvent actionEvent) {
-        String text = player.attack(enemie);
+        String text = player.attackOne(enemie);
         updateEnemieHelthLable();
         if(enemie.getHealth() > 0) {
             text = text + "\nOpponent turn: " + enemieNextMove();
@@ -104,6 +111,7 @@ public class RoomOneController implements PlayerAwareController {
     }
 
     public String enemieNextMove(){
+        player.resetTurnStatus();
         return enemie.attack(player);
     }
 
@@ -112,9 +120,14 @@ public class RoomOneController implements PlayerAwareController {
         administration.switchToFailScreen(scene, player, administration);
     }
 
-    public void skipTurn(ActionEvent actionEvent) {
-        enemieNextMove();
-        updateHealthLabel();
+    public void attackTwo(ActionEvent actionEvent) {
+        String text = player.attackTwo(enemie);
+        updateEnemieHelthLable();
+        if(enemie.getHealth() > 0) {
+            text = text + "\nOpponent turn: " + enemieNextMove();
+            updateHealthLabel();
+            statusLable.setText(text);
+        }
     }
 
     public void nextRoom(ActionEvent actionEvent) {

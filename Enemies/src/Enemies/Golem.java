@@ -8,10 +8,12 @@ public class Golem implements Enemie{
     private int damage;
     private int critChance;
     private int attackStatus = 0;
+    private int maxHealth;
     private String name = "Golem";
 
     public Golem() {
         this.health = 150;
+        this.maxHealth = health;
         this.damage = 20;
         this.critChance = 20;
     }
@@ -57,5 +59,10 @@ public class Golem implements Enemie{
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int getMaxHealth() {
+        return maxHealth;
     }
 }

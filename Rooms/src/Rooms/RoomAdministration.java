@@ -23,6 +23,7 @@ public class RoomAdministration {
     private String currentRoomFXML;
     private String lastRoomFXML;
     private int roomNumber = 1;
+    private int highscore;
 
 
     public RoomAdministration() {
@@ -42,7 +43,7 @@ public class RoomAdministration {
     }
 
     public String getCurrentRoomFXML() {
-        return currentRoomFXML; // current room wird nicht gescpreichert --> fürt zu null in last room
+        return currentRoomFXML;
     }
     public String getLastRoomFXML() {
         return lastRoomFXML;
@@ -51,17 +52,17 @@ public class RoomAdministration {
     public void randomDifferentNextRoom(Scene scene, Player player, RoomAdministration administration) {
         Room room;
         int status = 0;
-
         do {
             room = getRandomRoom();
             if (!Objects.equals(room.roomFXML(), currentRoomFXML)) {
                 status++;
+                setHighscore(roomNumber);
+                roomNumber++;
                 switchToRoom(room.roomFXML(), scene, player, administration);
+
             }
         }
         while(status == 0);
-
-        roomNumber++;
     }
 
 
@@ -99,5 +100,24 @@ public class RoomAdministration {
 
     public int getRoomNumber(){
         return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber){
+        this.roomNumber = roomNumber;
+    }
+
+    public void setHighscore(int score){
+        if(score > getHighscore()){
+            this.highscore = score;
+        }
+    }
+
+    public int getHighscore(){
+        return highscore;
+    }
+
+    public void restartGame(String fxml, Scene scene, Player player, RoomAdministration administration) {
+        setRoomNumber(0);
+        switchToRoom(fxml, scene, player, administration);
     }
 }
