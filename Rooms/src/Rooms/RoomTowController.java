@@ -23,7 +23,7 @@ public class RoomTowController implements PlayerAwareController{
     public void setPlayer(Player player, RoomAdministration administration) {
         this.player = player;
         this.administration = administration;
-        updtePlayerLife();
+        updateHealthLabel();
         nextRoom.setVisible(false);
         roomNumber.setText("Room: " + administration.getRoomNumber());
         highscore.setText("Highscore: " + administration.getHighscore());
@@ -35,8 +35,10 @@ public class RoomTowController implements PlayerAwareController{
         return "/Rooms/room_two.fxml";
     }
 
-    private void updtePlayerLife() {
+    @Override
+    public void updateHealthLabel() {
         playerLife.setText("Spieler 1 Leben: " + player.getHealth() + " / " + player.getMaxHealth());
+
     }
 
     public void nextRoom(ActionEvent actionEvent) {
@@ -70,7 +72,7 @@ public class RoomTowController implements PlayerAwareController{
                 statusLable.setText("Du trinkst was von dem wasser und spürst wie dich neues leben durchströmt\n- Du hast 30 Leben geheilt - ");
             }
         }
-        updtePlayerLife();
+        updateHealthLabel();
     }
 }
 

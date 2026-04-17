@@ -24,7 +24,7 @@ public class Player_one implements Player {
         damage = 10;
         critChance = 25;
         weapon = new Fists();
-        inventory = new Inventory();
+        inventory = new Inventory(this);
     }
 
     @Override
@@ -64,8 +64,7 @@ public class Player_one implements Player {
     public String attackTwo(Enemie enemie) {
         if(weapon.attackTwo() == -1){
             String status = weapon.statusAttack();
-            String[] awnsers = status.split(",");
-            return applyStatus(awnsers);
+            return applyStatus(status);
         }
         else{
             if(damage > weapon.getBaseDamage()){
@@ -82,14 +81,19 @@ public class Player_one implements Player {
         return "";
     }
     @Override
-    public String applyStatus(String[] awnsers){
-
+    public String applyStatus(String awnsersIN){
+        String[] awnsers = awnsersIN.split(",");
         switch (awnsers[0]){
             case "defend":
                 this.defend[0] = Integer.parseInt(awnsers[1]);
                 this.defend[1] = Integer.parseInt(awnsers[2]);
                 return "you used Your hands to block damage this round";
-
+            case "heal":
+                this.health += Integer.parseInt(awnsers[1]);
+                if(health > maxHealth){
+                    health = maxHealth;
+                }
+                return "you healed " + health + " health";
         }
         return "Something went wrong with status";
     }

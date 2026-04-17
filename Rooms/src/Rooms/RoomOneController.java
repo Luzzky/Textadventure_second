@@ -64,7 +64,8 @@ public class RoomOneController implements PlayerAwareController {
         updateHealthLabel();
     }
 
-    private void updateHealthLabel() {
+    @Override
+    public void updateHealthLabel() {
         if (healthLabel == null) {
             return;
         }
@@ -141,6 +142,6 @@ public class RoomOneController implements PlayerAwareController {
     }
 
     public void openInventory(ActionEvent actionEvent) {
-        player.getInventory().open(player.getInventory());
+        player.getInventory().open(player.getInventory(), this);
     }
 }

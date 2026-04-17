@@ -38,6 +38,11 @@ public class StartScreenController implements PlayerAwareController, Initializab
     }
 
     @Override
+    public void updateHealthLabel() {
+
+    }
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currentHighscore.setText("Highscore: " + roomAdministration.getHighscore() + " Rooms beaten");
     }

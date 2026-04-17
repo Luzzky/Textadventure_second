@@ -30,6 +30,11 @@ public class FailScreenController implements PlayerAwareController{
         return "/Rooms/FailScreen.fxml";
     }
 
+    @Override
+    public void updateHealthLabel() {
+
+    }
+
     //richtige leben nach restart fixen dann disable aufheben
     public void restartRoom(ActionEvent actionEvent) {
         player.setHelth(100);

@@ -9,7 +9,7 @@ public interface Player {
     String attackOne(Enemie enemie);
     String attackTwo(Enemie enemie);
     String attackThree(Enemie enemie);
-    String applyStatus(String[] awnsers);
+    String applyStatus(String awnsers);
     void setHelth(int heal);
     int getMaxHealth();
     int getDefend();

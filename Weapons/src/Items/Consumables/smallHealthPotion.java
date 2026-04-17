@@ -13,6 +13,7 @@ public class smallHealthPotion implements Consumable {
 
     @Override
     public String consume() {
+        System.out.println("Healpotion consumed");
         return "heal,30";
     }
 
