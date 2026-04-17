@@ -1,12 +1,12 @@
 package Game;
 
-import Rooms.Room;
+import Rooms.PlayerAwareController;
 import Rooms.RoomAdministration;
 
 public class Game_loop {
 
     private final Player player;
-    private Room currentRoom;
+    private PlayerAwareController currentRoom;
     private final RoomAdministration roomAdmin;
 
     public Game_loop(Player player, RoomAdministration roomAdmin) {
@@ -21,14 +21,13 @@ public class Game_loop {
 
     public void nextRoom() {
         currentRoom = roomAdmin.getRandomRoom();
-        currentRoom.startRoom(player);
     }
 
     public String currentRoomFxml() {
         if (currentRoom == null) {
             start();
         }
-        return currentRoom.roomFXML();
+        return currentRoom.getFXMLPath();
     }
 
     public Player getPlayer() {

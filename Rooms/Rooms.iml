@@ -10,5 +10,6 @@
     <orderEntry type="library" name="libfx" level="project" />
     <orderEntry type="module" module-name="Game" />
     <orderEntry type="module" module-name="Enemies" />
+    <orderEntry type="module" module-name="Weapons" />
   </component>
 </module>

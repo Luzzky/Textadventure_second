@@ -1,6 +1,7 @@
 package Game;
 
 import Enemies.Enemie;
+import Items.Weapons.Weapon;
 
 public interface Player {
     int getHealth();
@@ -13,4 +14,7 @@ public interface Player {
     int getMaxHealth();
     int getDefend();
     void resetTurnStatus();
+    Weapon getweapon();
+    Inventory getInventory();
+
 }

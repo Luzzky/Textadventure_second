@@ -32,7 +32,7 @@ public class RoomTowController implements PlayerAwareController{
 
     @Override
     public String getFXMLPath() {
-        return "/Rooms/room_tow.fxml";
+        return "/Rooms/room_two.fxml";
     }
 
     private void updtePlayerLife() {

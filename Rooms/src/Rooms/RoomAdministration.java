@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class RoomAdministration {
 
-    private List<Room> rooms;
+    private List<PlayerAwareController> roomControllers = new ArrayList<>();
     private Random rand = new Random();
     private String currentRoomFXML;
     private String lastRoomFXML;
@@ -27,15 +27,12 @@ public class RoomAdministration {
 
 
     public RoomAdministration() {
-        rooms = new ArrayList<Room>();
-        Room room_eins = new Raum_eins();
-        rooms.add(room_eins);
-        Room room_zwei = new Raum_zwei();
-        rooms.add(room_zwei);
+        roomControllers.add(new RoomOneController());
+        roomControllers.add(new RoomTowController());
     }
 
-    public Room getRandomRoom(){
-        return rooms.get(rand.nextInt(rooms.size()));
+    public PlayerAwareController getRandomRoom(){
+        return roomControllers.get(rand.nextInt(roomControllers.size()));
     }
 
     public void setCurrentRoomFXML(String currentRoomFXML) {
@@ -50,19 +47,20 @@ public class RoomAdministration {
     }
 
     public void randomDifferentNextRoom(Scene scene, Player player, RoomAdministration administration) {
-        Room room;
+        PlayerAwareController room;
         int status = 0;
         do {
             room = getRandomRoom();
-            if (!Objects.equals(room.roomFXML(), currentRoomFXML)) {
+            if (!Objects.equals(room.getFXMLPath(), currentRoomFXML)) {
                 status++;
                 setHighscore(roomNumber);
                 roomNumber++;
-                switchToRoom(room.roomFXML(), scene, player, administration);
+                switchToRoom(room.getFXMLPath(), scene, player, administration);
 
             }
         }
         while(status == 0);
+
     }
 
 

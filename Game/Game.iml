@@ -10,5 +10,6 @@
     <orderEntry type="module" module-name="Rooms" />
     <orderEntry type="module" module-name="Enemies" />
     <orderEntry type="module" module-name="Weapons" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

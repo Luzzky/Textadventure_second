@@ -1,6 +1,7 @@
-package Weapons;
+package Items.Weapons;
+import Items.*;
 
-public interface Weapon {
+public interface Weapon extends Items{
     int attackOne();
     int attackTwo();
     int attackThree();
@@ -8,6 +9,5 @@ public interface Weapon {
     String getAttackOneName();
     String getAttackTwoName();
     String getAttackThreeName();
-    String getDicription();
     int getBaseDamage();
 }

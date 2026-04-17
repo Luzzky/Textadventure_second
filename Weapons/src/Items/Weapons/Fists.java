@@ -1,4 +1,4 @@
-package Weapons;
+package Items.Weapons;
 
 public class Fists implements Weapon{
 
@@ -8,6 +8,7 @@ public class Fists implements Weapon{
     private String attackOneName = "Punch";
     private String attackTwoName = "Block";
     private String attackThreeName = "Leerer atk slot";
+    private String name = "Fists";
 
 
     public Fists(){
@@ -69,12 +70,22 @@ public class Fists implements Weapon{
     }
 
     @Override
-    public String getDicription() {
+    public String getDiscription() {
         return discription;
     }
 
     @Override
     public int getBaseDamage() {
         return baseDamage;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

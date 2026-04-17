@@ -1,8 +1,8 @@
 package Game;
 
 import Enemies.Enemie;
-import Weapons.Fists;
-import Weapons.Weapon;
+import Items.Weapons.Fists;
+import Items.Weapons.Weapon;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,6 +14,7 @@ public class Player_one implements Player {
     private int damage;
     private int critChance;
     private Weapon weapon;
+    private Inventory inventory;
     private int[] defend = new int[]{0,0}; //blockt damage für eine runde erste stelle die höhe des blocks und zweite stelle wie viele runden es noch hält
     private ArrayList<int[]> statusEffects = new ArrayList<>(Collections.singletonList(defend)); // beinhaltet alle temporären status effekt
 
@@ -23,6 +24,7 @@ public class Player_one implements Player {
         damage = 10;
         critChance = 25;
         weapon = new Fists();
+        inventory = new Inventory();
     }
 
     @Override
@@ -117,5 +119,15 @@ public class Player_one implements Player {
                 statusEffects.get(i)[0] = 0;            // wenn die runden zeit abgelaufen ist wird der status effekt wieder auf null gesetzt
             }
         }
+    }
+
+    @Override
+    public Weapon getweapon() {
+        return weapon;
+    }
+
+    @Override
+    public Inventory getInventory() {
+        return inventory;
     }
 }

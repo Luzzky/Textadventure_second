@@ -44,6 +44,11 @@ public class RoomOneController implements PlayerAwareController {
         enemie = enadministration.getRandomEnemie();
         enemieName.setText("Enemie: " + enemie.getName());
         highscore.setText("Highscore: " + administration.getHighscore());
+        playerHealthBar.setStyle("-fx-accent: #00e600;");
+        enimeHealthBar.setStyle("-fx-accent: #00e600;");
+        attackOne.setText(player.getweapon().getAttackOneName());
+        attackTow.setText(player.getweapon().getAttackTwoName());
+        attackThree.setText(player.getweapon().getAttackThreeName());
 
         updateHealthLabel();
         updateEnemieHelthLable();
@@ -133,5 +138,9 @@ public class RoomOneController implements PlayerAwareController {
     public void nextRoom(ActionEvent actionEvent) {
         Scene scene = pane.getScene();
         administration.randomDifferentNextRoom(scene, player, administration);
+    }
+
+    public void openInventory(ActionEvent actionEvent) {
+        player.getInventory().open(player.getInventory());
     }
 }

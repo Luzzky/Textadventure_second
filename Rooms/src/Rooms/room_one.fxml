@@ -22,7 +22,7 @@
             <Button fx:id="attackOne" mnemonicParsing="false" onAction="#attack" prefHeight="23.0" prefWidth="200.0" text="Use Punch" translateX="5.0" GridPane.rowIndex="2" />
             <Button fx:id="attackTow" mnemonicParsing="false" onAction="#attackTwo" prefHeight="23.0" prefWidth="200.0" text="attack 2" translateX="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button fx:id="attackThree" mnemonicParsing="false" onAction="#test" prefHeight="23.0" prefWidth="200.0" text="test" translateX="5.0" GridPane.rowIndex="3" />
-            <Button fx:id="inventory" mnemonicParsing="false" prefHeight="23.0" prefWidth="200.0" text="Button" translateX="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="inventory" mnemonicParsing="false" onAction="#openInventory" prefHeight="23.0" prefWidth="200.0" text="Inventory" translateX="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="enemieName" text="Zombie" GridPane.columnIndex="1">
                <padding>
                   <Insets left="5.0" />
