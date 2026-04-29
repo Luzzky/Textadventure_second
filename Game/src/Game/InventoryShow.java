@@ -1,8 +1,10 @@
 package Game;
 
+import Items.Armor.Armor;
+import Items.Armor.EmptySlot;
 import Items.Consumables.Consumable;
+import Items.Weapons.Weapon;
 import Rooms.PlayerAwareController;
-import Rooms.RoomAdministration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -26,11 +28,25 @@ public class InventoryShow {
     public Button useButton;
     public TabPane inventoryTabPane;
     public Tab consumablesTab;
+    public Tab armorTab;
+    public Tab weaponTab;
+    public Label headWear;
+    public Label bodyWear;
+    public Label legWear;
+    public Label equipedWeapon;
+    public Button equipButton;
+    public Label blockValue;
+    public Button unEquipHead;
+    public Button unEquipBody;
+    public Button unEquipLeg;
+    public Button unEquipWeapon;
     @FXML
     private VBox itemList;
 
     private Inventory inventory;
     private PlayerAwareController roomController;
+
+
 
     public void setInventory(Inventory inventory, PlayerAwareController roomController) {
         this.inventory = inventory;
@@ -44,7 +60,12 @@ public class InventoryShow {
         consumableView.setItems(inventory.getConsumables());
         playerGold.setText("Gold: " + inventory.getGold());
         playerHealt.setText("Leben: " + inventory.getPlayer().getHealth() + "/" + inventory.getPlayer().getMaxHealth());
+        headWear.setText(inventory.getCurrentEquipedHead().getName());
+        bodyWear.setText(inventory.getCurrentEquipedBody().getName());
+        legWear.setText(inventory.getCurrentEquipedLeg().getName());
+        equipedWeapon.setText(inventory.getCurrentEquipedWeapon().getName());
         roomController.updateHealthLabel();
+        blockValue.setText("Block: " + inventory.getComulativArmorValue());
     }
 
     public void listedViewShowItemDiscription(MouseEvent mouseEvent) {
@@ -61,14 +82,37 @@ public class InventoryShow {
                 Consumable item = (Consumable) consumableView.getSelectionModel().getSelectedItem();
                 String test = item.consume();
                 System.out.println(inventory.getPlayer().applyStatus(test));
+                inventory.deleteConsumable(item);
             }
             updateInventory();
-
         }
     }
 
     public void closeInventory(ActionEvent actionEvent) {
         Stage stage = (Stage) itemList.getScene().getWindow();
         stage.close();
+    }
+
+    public void equipSelectetItem(ActionEvent actionEvent) {
+        if(Objects.equals(inventoryTabPane.getSelectionModel().getSelectedItem().getId(), "armorTab")) {
+            if(armorView.getSelectionModel().getSelectedItem() != null){
+                Armor item = (Armor) armorView.getSelectionModel().getSelectedItem();
+                inventory.equipArmor(item);
+            }
+        }
+        else if (Objects.equals(inventoryTabPane.getSelectionModel().getSelectedItem().getId(), "weaponTab")) {
+            if(weaponsView.getSelectionModel().getSelectedItem() != null){
+                Weapon item = (Weapon) weaponsView.getSelectionModel().getSelectedItem();
+                inventory.equipWeapon(item);
+            }
+        }
+        updateInventory();
+    }
+
+    public void unequip(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+        String id = button.getId();
+        inventory.unEquip(id);
+        updateInventory();
     }
 }

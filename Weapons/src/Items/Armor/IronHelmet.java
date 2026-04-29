@@ -1,16 +1,16 @@
 package Items.Armor;
 
-public class LetherHelmet implements Armor {
+public class IronHelmet implements Armor {
     private int armor;
     private String name;
     private String discription;
     private String typ;
 
-    public LetherHelmet() {
+    public IronHelmet() {
         typ = "head";
-        armor = 10;
-        name = "Leder helmet";
-        discription = "This is a Leather helm";
+        armor = 20;
+        name = "Iron helmet";
+        discription = "This is a Iron helm";
     }
 
     @Override
@@ -38,3 +38,5 @@ public class LetherHelmet implements Armor {
         return name;
     }
 }
+
+

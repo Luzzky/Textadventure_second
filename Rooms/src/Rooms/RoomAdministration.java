@@ -29,10 +29,21 @@ public class RoomAdministration {
     public RoomAdministration() {
         roomControllers.add(new RoomOneController());
         roomControllers.add(new RoomTowController());
+//        roomControllers.add(new ShopController());
     }
 
     public PlayerAwareController getRandomRoom(){
         return roomControllers.get(rand.nextInt(roomControllers.size()));
+    }
+
+    public PlayerAwareController getFXMLRoom(String roomFXML){
+        for (PlayerAwareController roomController : roomControllers) {
+            String path = roomController.getFXMLPath();
+           if(path.equals(roomFXML)){
+               return roomController;
+           }
+        }
+        return null;
     }
 
     public void setCurrentRoomFXML(String currentRoomFXML) {

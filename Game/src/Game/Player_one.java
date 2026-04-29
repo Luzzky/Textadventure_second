@@ -34,6 +34,8 @@ public class Player_one implements Player {
 
     @Override
     public String tageDamage(int enimeDamage) {
+
+        enimeDamage = enimeDamage - inventory.getComulativArmorValue();
         enimeDamage = enimeDamage - defend[0];
 
         if(enimeDamage <= 0) {
@@ -62,7 +64,8 @@ public class Player_one implements Player {
 
     @Override
     public String attackTwo(Enemie enemie) {
-        if(weapon.attackTwo() == -1){
+        int damage = weapon.attackTwo();
+        if(damage == -1){
             String status = weapon.statusAttack();
             return applyStatus(status);
         }

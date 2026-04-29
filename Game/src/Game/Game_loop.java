@@ -21,6 +21,7 @@ public class Game_loop {
 
     public void nextRoom() {
         currentRoom = roomAdmin.getRandomRoom();
+//        currentRoom = roomAdmin.getFXMLRoom("/Rooms/Shop.fxml");
     }
 
     public String currentRoomFxml() {

@@ -1,8 +1,7 @@
 package Game;
 
-import Items.Armor.Armor;
+import Items.Armor.*;
 import Items.Consumables.Consumable;
-import Items.Armor.LetherHelmet;
 import Items.Consumables.smallHealthPotion;
 import Items.Weapons.Fists;
 import Items.Weapons.Weapon;
@@ -20,11 +19,16 @@ public class Inventory {
     private ListProperty<Armor> armors = new SimpleListProperty<>(FXCollections.observableArrayList());
     private ListProperty<Consumable> consumables = new SimpleListProperty<>(FXCollections.observableArrayList());
     private int gold;
+    private Armor currentEquipedHead = new EmptySlot();
+    private Armor currentEquipedBody = new EmptySlot();
+    private Armor currentEquipedLeg = new EmptySlot();
+    private Weapon currentEquipedWeapon = new Fists();
 
     public Inventory(Player player) {
         gold = 10;
-        weapons.add(new Fists());
         armors.add(new LetherHelmet());
+        armors.add(new IronHelmet());
+        armors.add(new LetherArmor());
         consumables.add(new smallHealthPotion());
         this.player = player;
     }
@@ -41,10 +45,96 @@ public class Inventory {
         consumables.add(consumable);
     }
 
+    public void deleteConsumable(Consumable consumable){
+        consumables.remove(consumable);
+    }
+
+    public boolean equipArmor(Armor armor){
+        String typ = armor.getArmorTyp();
+        switch(typ){
+            case "head":
+                if(!currentEquipedHead.getArmorTyp().equals("empty")){
+                    armors.add(currentEquipedHead);
+                }
+                armors.remove(armor);
+                currentEquipedHead = armor;
+                return true;
+            case "body":
+                if(!currentEquipedBody.getArmorTyp().equals("empty")){
+                    armors.add(currentEquipedBody);
+                }
+                armors.remove(armor);
+                currentEquipedBody = armor;
+                return true;
+            case "leg":
+                if(!currentEquipedLeg.getArmorTyp().equals("empty")){
+                    armors.add(currentEquipedLeg);
+                }
+                armors.remove(armor);
+                currentEquipedLeg = armor;
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public void unEquip(String slot){
+        switch(slot){
+            case "unEquipHead":
+                if(!currentEquipedHead.getArmorTyp().equals("empty")){
+                    armors.add(currentEquipedHead);
+                    currentEquipedHead = new EmptySlot();
+                }
+                break;
+            case "unEquipBody":
+                if(!currentEquipedBody.getArmorTyp().equals("empty")){
+                    armors.add(currentEquipedBody);
+                    currentEquipedBody = new EmptySlot();
+                }
+                break;
+            case "unEquipLeg":
+                if(!currentEquipedLeg.getArmorTyp().equals("empty")){
+                    armors.add(currentEquipedLeg);
+                    currentEquipedLeg = new EmptySlot();
+                }
+                break;
+            case "unEquipWeapon":
+                if(!currentEquipedWeapon.getName().equals("Fists")){
+                    weapons.add(currentEquipedWeapon);
+                    currentEquipedWeapon = new Fists();
+                }
+                break;
+        }
+    }
+
+    public void equipWeapon(Weapon weapon){
+        weapons.add(currentEquipedWeapon);
+        weapons.remove(weapon);
+        currentEquipedWeapon = weapon;
+    }
+
+    public Armor getCurrentEquipedHead() {
+        return currentEquipedHead;
+    }
+    public Armor getCurrentEquipedBody() {
+        return currentEquipedBody;
+    }
+    public Armor getCurrentEquipedLeg() {
+        return currentEquipedLeg;
+    }
+    public Weapon getCurrentEquipedWeapon(){
+        return currentEquipedWeapon;
+    }
     public ListProperty<Weapon> getWeapons() { return weapons; }
     public ListProperty<Armor> getArmors() { return armors; }
     public ListProperty<Consumable> getConsumables() { return consumables; }
     public int getGold() { return gold; }
+
+
+
+    public int getComulativArmorValue(){
+        return currentEquipedBody.getArmorValue()+currentEquipedHead.getArmorValue()+currentEquipedLeg.getArmorValue();
+    }
 
     public void open(Inventory inventory, PlayerAwareController con) {
         try {
