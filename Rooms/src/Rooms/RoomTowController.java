@@ -36,6 +36,11 @@ public class RoomTowController implements PlayerAwareController{
     }
 
     @Override
+    public void updateWindow() {
+
+    }
+
+    @Override
     public void updateHealthLabel() {
         playerLife.setText("Spieler 1 Leben: " + player.getHealth() + " / " + player.getMaxHealth());
 

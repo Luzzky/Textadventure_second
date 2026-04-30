@@ -47,7 +47,7 @@
                   </TabPane>
                   <VBox prefHeight="209.0" prefWidth="242.0">
                      <children>
-                        <GridPane prefHeight="132.0" prefWidth="183.0">
+                        <GridPane prefHeight="132.0" prefWidth="183.0" translateX="10.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.0" minWidth="10.0" prefWidth="75.00000381469727" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="58.2" />
@@ -70,13 +70,13 @@
                               <Label fx:id="legWear" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="Waffe:" GridPane.rowIndex="4" />
                               <Label fx:id="equipedWeapon" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Button fx:id="unEquipHead" onAction="#unequip" mnemonicParsing="false" text="ablegen" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <Button fx:id="unEquipBody" onAction="#unequip" mnemonicParsing="false" prefHeight="1.0" prefWidth="59.0" text="ablegen" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <Button fx:id="unEquipLeg" onAction="#unequip" mnemonicParsing="false" text="ablegen" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <Button fx:id="unEquipWeapon" onAction="#unequip" mnemonicParsing="false" text="ablegen" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Button fx:id="unEquipHead" mnemonicParsing="false" onAction="#unequip" text="ablegen" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Button fx:id="unEquipBody" mnemonicParsing="false" onAction="#unequip" prefHeight="1.0" prefWidth="59.0" text="ablegen" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Button fx:id="unEquipLeg" mnemonicParsing="false" onAction="#unequip" text="ablegen" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Button fx:id="unEquipWeapon" mnemonicParsing="false" onAction="#unequip" text="ablegen" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
-                        <GridPane>
+                        <GridPane translateX="10.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

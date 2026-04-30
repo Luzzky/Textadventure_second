@@ -38,6 +38,11 @@ public class StartScreenController implements PlayerAwareController, Initializab
     }
 
     @Override
+    public void updateWindow() {
+
+    }
+
+    @Override
     public void updateHealthLabel() {
 
     }

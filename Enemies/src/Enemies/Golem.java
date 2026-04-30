@@ -1,6 +1,10 @@
 package Enemies;
 
 import Game.Player;
+import Items.Armor.LetherHelmet;
+import Items.Weapons.OpSchwert;
+
+import java.util.Random;
 
 public class Golem implements Enemie{
 
@@ -10,6 +14,7 @@ public class Golem implements Enemie{
     private int attackStatus = 0;
     private int maxHealth;
     private String name = "Golem";
+    private Random rand = new Random();
 
     public Golem() {
         this.health = 150;
@@ -53,6 +58,21 @@ public class Golem implements Enemie{
         }
         else {
             return (int) (damage * Math.random() + 1);
+        }
+    }
+
+    @Override
+    public String dropLoot(Player player) {
+        player.getInventory().addGold(20);
+        if(rand.nextInt(101) <= 10){
+            player.getInventory().addWeapon(new OpSchwert());
+            return "20 Gold + Op Schwert";
+        } else if (rand.nextInt(101) <= 35) {
+            player.getInventory().addArmor(new LetherHelmet());
+            return "20 Gold + Leder Helm";
+        }
+        else {
+            return "20 Gold";
         }
     }
 

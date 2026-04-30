@@ -1,6 +1,8 @@
 package Rooms;
 
 import Game.Player;
+import Items.Armor.LetherHelmet;
+import Items.Weapons.OpSchwert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -9,6 +11,8 @@ import javafx.scene.control.Label;
 import Enemies.*;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
+
+import java.util.Random;
 
 public class RoomOneController implements PlayerAwareController {
 
@@ -31,6 +35,7 @@ public class RoomOneController implements PlayerAwareController {
     private Enemie enemie;
     private RoomAdministration administration;
     private EnemieAdministration enadministration;
+    public Random rand = new Random();
 
 
     @Override
@@ -46,12 +51,9 @@ public class RoomOneController implements PlayerAwareController {
         highscore.setText("Highscore: " + administration.getHighscore());
         playerHealthBar.setStyle("-fx-accent: #00e600;");
         enimeHealthBar.setStyle("-fx-accent: #00e600;");
-        attackOne.setText(player.getweapon().getAttackOneName());
-        attackTow.setText(player.getweapon().getAttackTwoName());
-        attackThree.setText(player.getweapon().getAttackThreeName());
 
-        updateHealthLabel();
-        updateEnemieHelthLable();
+        updateWindow();
+
     }
 
     @Override
@@ -62,6 +64,16 @@ public class RoomOneController implements PlayerAwareController {
     @FXML
     public void test(ActionEvent actionEvent) {
         updateHealthLabel();
+    }
+
+    @Override
+    public void updateWindow(){
+        attackOne.setText(player.getweapon().getAttackOneName());
+        attackTow.setText(player.getweapon().getAttackTwoName());
+        attackThree.setText(player.getweapon().getAttackThreeName());
+
+        updateHealthLabel();
+        updateEnemieHelthLable();
     }
 
     @Override
@@ -101,7 +113,8 @@ public class RoomOneController implements PlayerAwareController {
             attackThree.setVisible(false);
             attackTow.setVisible(false);
             inventory.setVisible(false);
-            statusLable.setText("You defeated " + enemie.getName() + "\nyou can now continue your journey");
+            statusLable.setText(enemie.getName() + " wurde besiegt, Du kannst jetzt den nächsten Raum betreten\nLOOT: " + enemie.dropLoot(player));
+
         }
 
     }

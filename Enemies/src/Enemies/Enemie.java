@@ -9,4 +9,5 @@ public interface Enemie {
     int calculateDamage(int critStatus);
     String getName();
     int getMaxHealth();
+    String dropLoot(Player player);
 }

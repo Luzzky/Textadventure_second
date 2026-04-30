@@ -13,7 +13,6 @@ public class Player_one implements Player {
     private int health;
     private int damage;
     private int critChance;
-    private Weapon weapon;
     private Inventory inventory;
     private int[] defend = new int[]{0,0}; //blockt damage für eine runde erste stelle die höhe des blocks und zweite stelle wie viele runden es noch hält
     private ArrayList<int[]> statusEffects = new ArrayList<>(Collections.singletonList(defend)); // beinhaltet alle temporären status effekt
@@ -23,7 +22,6 @@ public class Player_one implements Player {
         maxHealth = health;
         damage = 10;
         critChance = 25;
-        weapon = new Fists();
         inventory = new Inventory(this);
     }
 
@@ -34,16 +32,16 @@ public class Player_one implements Player {
 
     @Override
     public String tageDamage(int enimeDamage) {
+        int totalBlock = inventory.getComulativArmorValue() + defend[0];
 
-        enimeDamage = enimeDamage - inventory.getComulativArmorValue();
-        enimeDamage = enimeDamage - defend[0];
+        enimeDamage = enimeDamage - totalBlock;
 
         if(enimeDamage <= 0) {
             return ("you've blocked all damage");
         }
         else if(defend[0] != 0){
             health -= enimeDamage;
-            return ("you've blocked " + defend[0] + " and took " + enimeDamage + " damage");
+            return ("you've blocked " + totalBlock + " and took " + enimeDamage + " damage");
         }
         else {
             health -= enimeDamage;
@@ -53,9 +51,9 @@ public class Player_one implements Player {
 
     @Override
     public String attackOne(Enemie enemie) {
-        int damage = weapon.attackOne();
-        if(damage > weapon.getBaseDamage()){
-            return (weapon.getAttackOneName() + " was Critical - " + enemie.takeDamage(damage));
+        int damage = inventory.getCurrentEquipedWeapon().attackOne();
+        if(damage > inventory.getCurrentEquipedWeapon().getBaseDamage()){
+            return (inventory.getCurrentEquipedWeapon().getAttackOneName() + " was Critical - " + enemie.takeDamage(damage));
         }
         else{
             return enemie.takeDamage(damage);
@@ -64,14 +62,14 @@ public class Player_one implements Player {
 
     @Override
     public String attackTwo(Enemie enemie) {
-        int damage = weapon.attackTwo();
+        int damage = inventory.getCurrentEquipedWeapon().attackTwo();
         if(damage == -1){
-            String status = weapon.statusAttack();
+            String status = inventory.getCurrentEquipedWeapon().statusAttack();
             return applyStatus(status);
         }
         else{
-            if(damage > weapon.getBaseDamage()){
-                return (weapon.getAttackOneName() + " was Critical - " + enemie.takeDamage(damage));
+            if(damage > inventory.getCurrentEquipedWeapon().getBaseDamage()){
+                return (inventory.getCurrentEquipedWeapon().getAttackOneName() + " was Critical - " + enemie.takeDamage(damage));
             }
             else{
                 return enemie.takeDamage(damage);
@@ -130,7 +128,7 @@ public class Player_one implements Player {
 
     @Override
     public Weapon getweapon() {
-        return weapon;
+        return inventory.getCurrentEquipedWeapon();
     }
 
     @Override

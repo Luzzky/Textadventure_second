@@ -64,7 +64,7 @@ public class InventoryShow {
         bodyWear.setText(inventory.getCurrentEquipedBody().getName());
         legWear.setText(inventory.getCurrentEquipedLeg().getName());
         equipedWeapon.setText(inventory.getCurrentEquipedWeapon().getName());
-        roomController.updateHealthLabel();
+        roomController.updateWindow();
         blockValue.setText("Block: " + inventory.getComulativArmorValue());
     }
 
@@ -89,6 +89,7 @@ public class InventoryShow {
     }
 
     public void closeInventory(ActionEvent actionEvent) {
+        roomController.updateWindow();
         Stage stage = (Stage) itemList.getScene().getWindow();
         stage.close();
     }

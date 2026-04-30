@@ -53,6 +53,11 @@ public class ShopController implements PlayerAwareController{
     }
 
     @Override
+    public void updateWindow() {
+
+    }
+
+    @Override
     public void updateHealthLabel() {
 
     }

@@ -1,6 +1,11 @@
 package Enemies;
 
 import Game.Player;
+import Items.*;
+import Items.Armor.LetherHelmet;
+import Items.Weapons.OpSchwert;
+
+import java.util.Random;
 
 public class Zombie implements Enemie {
     private int health;
@@ -8,6 +13,7 @@ public class Zombie implements Enemie {
     private int damage;
     private int critChance;
     private String name ="Zombie";
+    private Random rand = new Random();
 
     public Zombie() {
         this.health = 100;
@@ -54,5 +60,20 @@ public class Zombie implements Enemie {
     @Override
     public int getMaxHealth() {
         return maxHealth;
+    }
+
+    @Override
+    public String dropLoot(Player player) {
+        player.getInventory().addGold(10);
+        if(rand.nextInt(101) <= 5){
+            player.getInventory().addWeapon(new OpSchwert());
+            return "10 Gold + Op Schwert";
+        } else if (rand.nextInt(101) <= 35) {
+            player.getInventory().addArmor(new LetherHelmet());
+            return "10 Gold + Leder Helm";
+        }
+        else {
+            return "10 Gold";
+        }
     }
 }

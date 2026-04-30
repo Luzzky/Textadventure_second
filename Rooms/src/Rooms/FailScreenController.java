@@ -31,6 +31,11 @@ public class FailScreenController implements PlayerAwareController{
     }
 
     @Override
+    public void updateWindow() {
+
+    }
+
+    @Override
     public void updateHealthLabel() {
 
     }

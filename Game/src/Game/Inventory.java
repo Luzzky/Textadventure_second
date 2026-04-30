@@ -4,6 +4,7 @@ import Items.Armor.*;
 import Items.Consumables.Consumable;
 import Items.Consumables.smallHealthPotion;
 import Items.Weapons.Fists;
+import Items.Weapons.OpSchwert;
 import Items.Weapons.Weapon;
 import Rooms.PlayerAwareController;
 import Rooms.RoomAdministration;
@@ -26,11 +27,12 @@ public class Inventory {
 
     public Inventory(Player player) {
         gold = 10;
-        armors.add(new LetherHelmet());
-        armors.add(new IronHelmet());
-        armors.add(new LetherArmor());
         consumables.add(new smallHealthPotion());
         this.player = player;
+    }
+
+    public void addGold(int gold) {
+        this.gold += gold;
     }
 
     public void addWeapon(Weapon weapon){
