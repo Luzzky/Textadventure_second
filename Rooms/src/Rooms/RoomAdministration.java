@@ -1,5 +1,7 @@
 package Rooms;
 
+import Enemies.Enemie;
+import Enemies.RandomCollection;
 import Game.Game_loop;
 import Game.Player;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class RoomAdministration {
@@ -24,16 +25,19 @@ public class RoomAdministration {
     private String lastRoomFXML;
     private int roomNumber = 1;
     private int highscore;
-
+    private RandomCollection<PlayerAwareController> rc = new RandomCollection<>();
 
     public RoomAdministration() {
+
+        rc.add(80, new RoomOneController());
+        rc.add(30, new RoomTowController());
+
         roomControllers.add(new RoomOneController());
         roomControllers.add(new RoomTowController());
-//        roomControllers.add(new ShopController());
     }
 
     public PlayerAwareController getRandomRoom(){
-        return roomControllers.get(rand.nextInt(roomControllers.size()));
+        return rc.next();
     }
 
     public PlayerAwareController getFXMLRoom(String roomFXML){
@@ -60,17 +64,26 @@ public class RoomAdministration {
     public void randomDifferentNextRoom(Scene scene, Player player, RoomAdministration administration) {
         PlayerAwareController room;
         int status = 0;
-        do {
-            room = getRandomRoom();
-            if (!Objects.equals(room.getFXMLPath(), currentRoomFXML)) {
-                status++;
-                setHighscore(roomNumber);
-                roomNumber++;
-                switchToRoom(room.getFXMLPath(), scene, player, administration);
-
-            }
+        if((roomNumber + 1)%5 == 0){
+            switchToRoom("/Rooms/Shop.fxml", scene, player, administration);
+            setHighscore(roomNumber);
+            roomNumber++;
         }
-        while(status == 0);
+        else {
+           do {
+                room = getRandomRoom();
+               if(room.getFXMLPath().equals("/Rooms/room_two.fxml") && currentRoomFXML.equals("/Rooms/room_two.fxml")){
+                //es soll nicht zweimal hintereinander room teo kommen können
+               }
+               else{
+                   status++;
+                   setHighscore(roomNumber);
+                   roomNumber++;
+                   switchToRoom(room.getFXMLPath(), scene, player, administration);
+               }
+            }
+            while (status == 0);
+        }
 
     }
 

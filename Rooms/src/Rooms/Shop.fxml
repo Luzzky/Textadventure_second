@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Rooms.ShopController">
+<BorderPane fx:id="boarderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Rooms.ShopController">
    <center>
-      <TableView fx:id="shopTableView" prefHeight="328.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="shopTableView" onMouseClicked="#updateDiscriptionLabel" prefHeight="209.0" prefWidth="368.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="tableViewCollumItem" prefWidth="160.60000002384186" text="Item" />
+          <TableColumn fx:id="tableViewCollumPrice" prefWidth="62.199981689453125" text="Preis" />
         </columns>
       </TableView>
    </center>
@@ -21,7 +21,7 @@
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Label fx:id="playerGoldLable" alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="270.0" text="Label" />
+            <Label fx:id="playerGoldLable" alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="265.0" text="Label" />
          </children>
       </HBox>
    </top>
@@ -40,10 +40,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="buyButton" mnemonicParsing="false" text="Kaufen" />
-                  <Button fx:id="nextRoomButton" mnemonicParsing="false" text="nächster Raum" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="inventoryButton" mnemonicParsing="false" text="Inventar" GridPane.rowIndex="1" />
-                  <Button fx:id="buyAndEquipButton" mnemonicParsing="false" text="buy&amp;equip" GridPane.columnIndex="1" />
+                  <Button fx:id="buyButton" mnemonicParsing="false" onAction="#buySelectedItem" text="Kaufen" />
+                  <Button fx:id="nextRoomButton" mnemonicParsing="false" onAction="#nextRoom" text="nächster Raum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="inventoryButton" mnemonicParsing="false" onAction="#showInventory" text="Inventar" GridPane.rowIndex="1" />
+                  <Button fx:id="buyAndEquipButton" mnemonicParsing="false" onAction="#byAndEquipSelectetItem" text="buy&amp;equip" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>

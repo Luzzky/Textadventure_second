@@ -5,12 +5,16 @@ public class LetherHelmet implements Armor {
     private String name;
     private String discription;
     private String typ;
+    private int price;
+    private String itemType;
 
     public LetherHelmet() {
         typ = "head";
         armor = 10;
         name = "Leder helmet";
         discription = "This is a Leather helm";
+        price = 30;
+        itemType = "armor";
     }
 
     @Override
@@ -31,6 +35,16 @@ public class LetherHelmet implements Armor {
     @Override
     public String getDiscription() {
         return discription;
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getType() {
+        return itemType;
     }
 
     @Override

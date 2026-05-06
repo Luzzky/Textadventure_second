@@ -26,7 +26,7 @@ public class Inventory {
     private Weapon currentEquipedWeapon = new Fists();
 
     public Inventory(Player player) {
-        gold = 10;
+        gold = 100;
         consumables.add(new smallHealthPotion());
         this.player = player;
     }

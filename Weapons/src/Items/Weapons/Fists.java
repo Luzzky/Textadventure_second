@@ -9,12 +9,17 @@ public class Fists implements Weapon{
     private String attackTwoName = "Block";
     private String attackThreeName = "Leerer atk slot";
     private String name = "Fists";
+    private int price;
+    private String type;
+
 
 
     public Fists(){
         this.baseDamage = 10;
         this.baseCrit = 25;
         this.discription = "Fists\n-Punch: dose some damage\n-Block: blocks some damage and increases crit chance for one turn";
+        price = 10;
+        type = "weapon";
     }
     @Override
     public int attackOne() {
@@ -72,6 +77,16 @@ public class Fists implements Weapon{
     @Override
     public String getDiscription() {
         return discription;
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 
     @Override

@@ -9,11 +9,15 @@ public class OpSchwert implements  Weapon{
     private String attackTwoName = "leerer atk slot";
     private String attackThreeName = "Leerer atk slot";
     private String name = "Op Schwert";
+    private int price;
+    private String type;
 
     public OpSchwert(){
             this.baseDamage = 50;
             this.baseCrit = 50;
             this.discription = "Op-Schwert\n-insta kill: dose some more damage";
+            price = 1000;
+            type = "weapon";
     }
 
     @Override
@@ -79,6 +83,16 @@ public class OpSchwert implements  Weapon{
     @Override
     public String getDiscription() {
         return discription;
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 
     @Override

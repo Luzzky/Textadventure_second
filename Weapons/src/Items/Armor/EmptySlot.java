@@ -5,12 +5,14 @@ public class EmptySlot implements Armor{
     String name;
     String type;
     String discription;
+    private int price;
 
     public EmptySlot() {
 
         name = "Leerer Slot";
         type = "empty";
         discription = "Hier kann ein item ausgerüstet werden";
+        price = 0;
     }
     @Override
     public int getArmorValue() {
@@ -30,5 +32,15 @@ public class EmptySlot implements Armor{
     @Override
     public String getDiscription() {
         return discription;
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getType() {
+        return "empty";
     }
 }
