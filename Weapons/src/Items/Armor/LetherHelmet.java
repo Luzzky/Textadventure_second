@@ -7,12 +7,14 @@ public class LetherHelmet implements Armor {
     private String typ;
     private int price;
     private String itemType;
+    private int sellValue;
 
     public LetherHelmet() {
         typ = "head";
         armor = 10;
         name = "Leder helmet";
-        discription = "This is a Leather helm";
+        sellValue = 15;
+        discription = "Leather helmet\n-Protects your head a little bit and blocks 10 damage\n-Sell Value: " + sellValue;
         price = 30;
         itemType = "armor";
     }
@@ -44,7 +46,7 @@ public class LetherHelmet implements Armor {
 
     @Override
     public int getSellValue() {
-        return 15;
+        return sellValue;
     }
 
     @Override

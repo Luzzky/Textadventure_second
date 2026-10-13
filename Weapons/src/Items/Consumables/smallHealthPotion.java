@@ -6,11 +6,13 @@ public class smallHealthPotion implements Consumable {
     private String discription;
     private int price;
     private String type;
+    private int sellValue;
 
     public smallHealthPotion() {
         name = "small Health Potion";
         power = 30;
-        discription = "This is a small health potion";
+        sellValue = 10;
+        discription = "small health potion\n-Heals the Player for 30 helth\n-Sell Value: " + sellValue;
         price = 20;
         type = "consumable";
     }
@@ -38,7 +40,7 @@ public class smallHealthPotion implements Consumable {
 
     @Override
     public int getSellValue() {
-        return 10;
+        return sellValue;
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Fists implements Weapon{
     public Fists(){
         this.baseDamage = 10;
         this.baseCrit = 25;
-        this.discription = "Fists\n-Punch: dose some damage\n-Block: blocks some damage and increases crit chance for one turn";
+        this.discription = "Fists\n-Punch: dose some damage\n-Block: blocks some damage and increases crit chance for one turn\n-Sell Value: You do not want to sell your hands ... probably";
         price = 10;
         type = "weapon";
     }

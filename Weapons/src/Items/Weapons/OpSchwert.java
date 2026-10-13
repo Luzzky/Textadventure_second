@@ -11,11 +11,13 @@ public class OpSchwert implements  Weapon{
     private String name = "Op Schwert";
     private int price;
     private String type;
+    private int sellValue;
 
     public OpSchwert(){
             this.baseDamage = 50;
             this.baseCrit = 50;
-            this.discription = "Op-Schwert\n-insta kill: dose some more damage";
+            sellValue = 500;
+            this.discription = "Op-Schwert\n-insta kill: dose some more damage\n-Sell Value: " + sellValue;
             price = 1000;
             type = "weapon";
     }
@@ -92,7 +94,7 @@ public class OpSchwert implements  Weapon{
 
     @Override
     public int getSellValue() {
-        return 500;
+        return sellValue;
     }
 
     @Override

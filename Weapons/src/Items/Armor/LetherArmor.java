@@ -8,12 +8,14 @@ public class LetherArmor implements Armor {
     private String typ;
     private int price;
     private String itemType;
+    private int sellValue;
 
     public LetherArmor() {
         typ = "body";
         armor = 30;
         name = "Leder Harnish";
-        discription = "This is a Leather Harnish";
+        sellValue = 25;
+        discription = "Leather Harnish\n-Protects your body a little bit and blocks 30 Damage\n-Sell Value: " + sellValue;
         price = 50;
         itemType = "armor";
     }
@@ -45,7 +47,7 @@ public class LetherArmor implements Armor {
 
     @Override
     public int getSellValue() {
-        return 25;
+        return sellValue;
     }
 
     @Override
