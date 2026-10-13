@@ -43,6 +43,11 @@ public class IronHelmet implements Armor {
     }
 
     @Override
+    public int getSellValue() {
+        return 25;
+    }
+
+    @Override
     public String getType() {
         return itemType;
     }

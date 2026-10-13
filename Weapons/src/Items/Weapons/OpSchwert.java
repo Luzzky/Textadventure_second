@@ -91,6 +91,11 @@ public class OpSchwert implements  Weapon{
     }
 
     @Override
+    public int getSellValue() {
+        return 500;
+    }
+
+    @Override
     public String getType() {
         return type;
     }

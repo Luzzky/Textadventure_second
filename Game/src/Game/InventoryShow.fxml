@@ -112,6 +112,7 @@
                         <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeInventory" text="Zurück" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Button fx:id="useButton" mnemonicParsing="false" onAction="#useSelectetItem" text="Benutzen" />
                         <Button fx:id="equipButton" mnemonicParsing="false" onAction="#equipSelectetItem" text="Ausrüsten" GridPane.columnIndex="1" />
+                        <Button fx:id="sellButton" mnemonicParsing="false" onAction="#sellSelectedItem" text="Verkaufen" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

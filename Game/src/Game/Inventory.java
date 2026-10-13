@@ -1,5 +1,6 @@
 package Game;
 
+import Items.Items;
 import Items.Armor.*;
 import Items.Consumables.Consumable;
 import Items.Consumables.smallHealthPotion;
@@ -13,6 +14,8 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 
+import java.util.ArrayList;
+
 public class Inventory {
 
     private Player player;
@@ -25,10 +28,14 @@ public class Inventory {
     private Armor currentEquipedLeg = new EmptySlot();
     private Weapon currentEquipedWeapon = new Fists();
 
+    ArrayList<Character> convertetCharList = new ArrayList();
+
     public Inventory(Player player) {
         gold = 100;
         consumables.add(new smallHealthPotion());
         this.player = player;
+        weapons.add(new OpSchwert());
+        armors.add(new IronHelmet());
     }
 
     public void addGold(int gold) {
@@ -49,6 +56,18 @@ public class Inventory {
 
     public void deleteConsumable(Consumable consumable){
         consumables.remove(consumable);
+    }
+
+    public void removeItemFormInventory(Items item){
+        if(weapons.contains(item)){
+            weapons.remove(item);
+        }
+        else if(armors.contains(item)){
+            armors.remove(item);
+        }
+        else if(consumables.contains(item)){
+            consumables.remove(item);
+        }
     }
 
     public boolean equipArmor(Armor armor){
@@ -113,6 +132,11 @@ public class Inventory {
         weapons.add(currentEquipedWeapon);
         weapons.remove(weapon);
         currentEquipedWeapon = weapon;
+    }
+
+    public void sellItem(Items item){
+        addGold(item.getSellValue());
+        removeItemFormInventory(item);
     }
 
     public Armor getCurrentEquipedHead() {

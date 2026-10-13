@@ -43,6 +43,11 @@ public class LetherHelmet implements Armor {
     }
 
     @Override
+    public int getSellValue() {
+        return 15;
+    }
+
+    @Override
     public String getType() {
         return itemType;
     }

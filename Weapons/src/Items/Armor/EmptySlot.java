@@ -40,6 +40,11 @@ public class EmptySlot implements Armor{
     }
 
     @Override
+    public int getSellValue() {
+        return 0;
+    }
+
+    @Override
     public String getType() {
         return "empty";
     }

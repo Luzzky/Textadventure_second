@@ -85,6 +85,11 @@ public class Fists implements Weapon{
     }
 
     @Override
+    public int getSellValue() {
+        return 0;
+    }
+
+    @Override
     public String getType() {
         return type;
     }

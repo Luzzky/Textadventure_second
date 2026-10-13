@@ -37,6 +37,11 @@ public class smallHealthPotion implements Consumable {
     }
 
     @Override
+    public int getSellValue() {
+        return 10;
+    }
+
+    @Override
     public String getType() {
         return type;
     }

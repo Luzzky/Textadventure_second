@@ -40,6 +40,7 @@ public class InventoryShow {
     public Button unEquipBody;
     public Button unEquipLeg;
     public Button unEquipWeapon;
+    public Button sellButton;
     @FXML
     private VBox itemList;
 
@@ -66,6 +67,7 @@ public class InventoryShow {
         equipedWeapon.setText(inventory.getCurrentEquipedWeapon().getName());
         roomController.updateWindow();
         blockValue.setText("Block: " + inventory.getComulativArmorValue());
+        sellButton.setVisible(Objects.equals(roomController.getFXMLPath(), "/Rooms/Shop.fxml"));
     }
 
     public void listedViewShowItemDiscription(MouseEvent mouseEvent) {
@@ -95,13 +97,13 @@ public class InventoryShow {
     }
 
     public void equipSelectetItem(ActionEvent actionEvent) {
-        if(Objects.equals(inventoryTabPane.getSelectionModel().getSelectedItem().getId(), "armorTab")) {
+        if(Objects.equals(currentView(), armorView)) {
             if(armorView.getSelectionModel().getSelectedItem() != null){
                 Armor item = (Armor) armorView.getSelectionModel().getSelectedItem();
                 inventory.equipArmor(item);
             }
         }
-        else if (Objects.equals(inventoryTabPane.getSelectionModel().getSelectedItem().getId(), "weaponTab")) {
+        else if (Objects.equals(currentView(), weaponsView)) {
             if(weaponsView.getSelectionModel().getSelectedItem() != null){
                 Weapon item = (Weapon) weaponsView.getSelectionModel().getSelectedItem();
                 inventory.equipWeapon(item);
@@ -110,10 +112,33 @@ public class InventoryShow {
         updateInventory();
     }
 
+    public ListView currentView(){
+        if(Objects.equals(inventoryTabPane.getSelectionModel().getSelectedItem().getId(), "armorTab")) {
+            return armorView;
+        }
+        else if (Objects.equals(inventoryTabPane.getSelectionModel().getSelectedItem().getId(), "weaponTab")) {
+            return weaponsView;
+        }
+        else if (Objects.equals(inventoryTabPane.getSelectionModel().getSelectedItem().getId(), "consumablesTab")) {
+            return consumableView;
+        }
+        return null;
+    }
+
     public void unequip(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
         String id = button.getId();
         inventory.unEquip(id);
         updateInventory();
+    }
+
+    public void sellSelectedItem(ActionEvent actionEvent) {
+        if(inventoryTabPane.getSelectionModel().getSelectedItem().getContent() != null) {
+            Items item = (Items) currentView().getSelectionModel().getSelectedItem(); //kann irgendwie nicht gecastet werden, bitte nach schauen
+            if (!Objects.equals(item.getName(), "Fists")) {
+                inventory.sellItem(item);
+                updateInventory();
+            }
+        }
     }
 }
